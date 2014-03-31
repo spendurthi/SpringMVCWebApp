@@ -12,14 +12,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
-    private String address;
 
-    public User() {}
+    public User() { }
 
-    public User(Integer id, String name, String address) {
+    public User(Integer id, String name) {
         this.id = id;
         this.name = name;
-        this.address = address;
     }
 
     public Integer getId() {
@@ -38,12 +36,7 @@ public class User {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
 }
+
+
+
