@@ -23,7 +23,7 @@ public class BasicController {
 
     @ResponseBody
     @RequestMapping(value = "/createUser", method = RequestMethod.GET)
-    public User createUser(ModelMap model) {
+    public User createUser() {
         User user = new User(1,"David");
         userService.createUser(user);
         return user;

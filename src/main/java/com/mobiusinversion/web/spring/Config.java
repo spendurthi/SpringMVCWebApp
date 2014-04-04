@@ -2,13 +2,11 @@ package com.mobiusinversion.web.spring;
 
 import com.mobiusinversion.web.repositories.UserRepository;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
-import org.springframework.orm.hibernate4.HibernateTemplate;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.JstlView;
@@ -66,12 +64,12 @@ public class Config {
     }
 
     @Bean
-    public AnnotationSessionFactoryBean getSessionFactory() {
-        AnnotationSessionFactoryBean annotationSessionFactoryBean = new AnnotationSessionFactoryBean();
-        annotationSessionFactoryBean.setDataSource(getDataSource());
-        annotationSessionFactoryBean.setHibernateProperties(getHibernateProperties());
-        annotationSessionFactoryBean.setPackagesToScan("com.mobiusinversion.web");
-        return annotationSessionFactoryBean;
+    public LocalSessionFactoryBean getSessionFactory() {
+        LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
+        localSessionFactoryBean.setDataSource(getDataSource());
+        localSessionFactoryBean.setHibernateProperties(getHibernateProperties());
+        localSessionFactoryBean.setPackagesToScan("com.mobiusinversion.web");
+        return localSessionFactoryBean;
     }
 
     @Bean
@@ -79,11 +77,6 @@ public class Config {
         HibernateTransactionManager hibernateTransactionManager = new HibernateTransactionManager();
         hibernateTransactionManager.setSessionFactory(sessionFactory);
         return hibernateTransactionManager;
-    }
-
-    @Bean
-    public HibernateTemplate getHibernateTemplate(SessionFactory sessionFactory) {
-        return new HibernateTemplate(sessionFactory);
     }
 
     @Bean
