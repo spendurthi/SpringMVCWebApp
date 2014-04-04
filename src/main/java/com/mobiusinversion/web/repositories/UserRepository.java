@@ -2,6 +2,7 @@ package com.mobiusinversion.web.repositories;
 
 import java.util.List;
 
+import com.mobiusinversion.web.hibernate.SessionService;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
@@ -14,8 +15,7 @@ import com.mobiusinversion.web.entities.User;
 @Repository
 public class UserRepository {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    private static SessionFactory sessionFactory = SessionService.getSessionFactory();
 
     @SuppressWarnings("unchecked")
     public List<User> getAllUsers() {
