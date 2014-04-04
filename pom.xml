@@ -11,10 +11,19 @@
 
     <properties>
         <spring.version>4.0.2.RELEASE</spring.version>
-        <hibernate.version>4.3.4.Final</hibernate.version>
+        <hibernate4.version>4.3.4.Final</hibernate4.version>
+        <hibernate3.version>3.1</hibernate3.version>
         <servlet.version>3.1.0</servlet.version>
+        <dbcp.version>2.0</dbcp.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>java.net</id>
+            <url>http://download.java.net/maven/2/</url>
+        </repository>
+    </repositories>
 
     <dependencies>
 
@@ -49,7 +58,12 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>${hibernate.version}</version>
+            <version>${hibernate4.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate</artifactId>
+            <version>${hibernate3.version}</version>
         </dependency>
 
         <!-- Servlet -->
@@ -64,6 +78,13 @@
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
             <version>2.3.2</version>
+        </dependency>
+
+        <!-- dbcp -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <version>${dbcp.version}</version>
         </dependency>
 
     </dependencies>

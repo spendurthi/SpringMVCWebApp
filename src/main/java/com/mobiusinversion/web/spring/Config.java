@@ -1,11 +1,11 @@
 package com.mobiusinversion.web.spring;
 
+import com.mobiusinversion.web.repositories.UserRepository;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
 import org.springframework.orm.hibernate4.HibernateTemplate;
@@ -20,9 +20,9 @@ import java.util.Properties;
 @EnableWebMvc
 @Configuration
 @ComponentScan("com.mobiusinversion.web")
+@PropertySource("classpath:application.properties")
 public class Config {
 
-    //${jdbc.driverClassName}
     @Value("${jdbc.driverClassName}")   private String driverClassName;
     @Value("${jdbc.url}")               private String url;
     @Value("${jdbc.username}")          private String username;
@@ -31,6 +31,11 @@ public class Config {
     @Value("${hibernate.dialect}")      private String hibernateDialect;
     @Value("${hibernate.show_sql}")     private String hibernateShowSql;
     @Value("${hibernate.hbm2ddl.auto}") private String hibernateHbm2ddlAuto;
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
 
     @Bean
     public UrlBasedViewResolver setupViewResolver() {
@@ -79,6 +84,11 @@ public class Config {
     @Bean
     public HibernateTemplate getHibernateTemplate(SessionFactory sessionFactory) {
         return new HibernateTemplate(sessionFactory);
+    }
+
+    @Bean
+    public UserRepository getUserRepository() {
+        return new UserRepository();
     }
 
 }

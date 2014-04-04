@@ -2,6 +2,7 @@ package com.mobiusinversion.web.repositories;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -14,15 +15,17 @@ import com.mobiusinversion.web.entities.User;
 public class UserRepository {
 
     @Autowired
-    private HibernateTemplate hibernateTemplate;
+    private SessionFactory sessionFactory;
 
+    @SuppressWarnings("unchecked")
     public List<User> getAllUsers() {
-        return this.hibernateTemplate.loadAll(User.class);
+        return sessionFactory.getCurrentSession().createCriteria(User.class).list();
     }
 
+    @SuppressWarnings("unchecked")
     public Integer createUser(User user) {
-        User mergeUser = this.hibernateTemplate.merge(user);
-        return mergeUser.getId();
+        User mergedUser = (User) sessionFactory.getCurrentSession().merge(user);
+        return mergedUser.getId();
     }
 
 }
