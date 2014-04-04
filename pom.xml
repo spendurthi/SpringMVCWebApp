@@ -15,6 +15,7 @@
         <hibernate3.version>3.1</hibernate3.version>
         <servlet.version>3.1.0</servlet.version>
         <dbcp.version>2.0</dbcp.version>
+        <hsqldb.version>2.3.2</hsqldb.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -77,7 +78,7 @@
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
-            <version>2.3.2</version>
+            <version>${hsqldb.version}</version>
         </dependency>
 
         <!-- dbcp -->
