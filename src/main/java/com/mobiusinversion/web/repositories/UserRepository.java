@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mobiusinversion.web.entities.User;
 
-@Transactional
 @Repository
+@Transactional
 public class UserRepository {
 
     @Autowired

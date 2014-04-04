@@ -14,11 +14,11 @@ public class UserService {
     private UserRepository userRepository;
 
     public List<User> getAllUsers() {
-        return this.userRepository.getAllUsers();
+        return userRepository.getAllUsers();
     }
 
     public Integer createUser(User user) {
-        return this.userRepository.createUser(user);
+        return userRepository.createUser(user);
     }
 
 }

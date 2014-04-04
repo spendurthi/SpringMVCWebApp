@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
 public class UserController {
 
@@ -27,6 +29,12 @@ public class UserController {
         User user = new User(1,"David");
         userService.createUser(user);
         return user;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/listUsers", method = RequestMethod.GET)
+    public List<User> listUsers() {
+        return userService.getAllUsers();
     }
 
 }
